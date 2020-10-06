@@ -87,6 +87,10 @@ namespace reshadefx
 		/// <returns></returns>
 		std::vector<std::pair<std::string, std::string>> used_macro_definitions() const;
 
+		// Move to public
+		void push(std::string input, const std::string &name = std::string());
+		void parse();
+
 	private:
 		struct if_level
 		{
@@ -106,15 +110,12 @@ namespace reshadefx
 		void error(const location &location, const std::string &message);
 		void warning(const location &location, const std::string &message);
 
-		void push(std::string input, const std::string &name = std::string());
-
 		bool peek(tokenid token) const;
 		bool consume();
 		void consume_until(tokenid token);
 		bool accept(tokenid token);
 		bool expect(tokenid token);
 
-		void parse();
 		void parse_def();
 		void parse_undef();
 		void parse_if();
